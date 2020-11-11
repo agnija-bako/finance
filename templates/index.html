@@ -1,0 +1,42 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Finance
+{% endblock %}
+
+{% block main %}
+
+    <table class="table table-striped" action="/">
+        <thead>
+            <tr>
+                <th>Symbol</th>
+                <th>Name</th>
+                <th>Shares</th>
+                <th>Price</th>
+                <th>Total</th>
+            </tr>
+        </thead>
+        <tfoot>
+            <tr>
+                <td colspan="4"></td>
+                <td>{{'${:,.2f}'.format(grand_total)}}</td>
+            </tr>
+        </tfoot>
+        <tbody>
+            {% for share in shares %}
+                <tr>
+                    <td>{{share["symbol"]}}</td>
+                    <td>{{share["name"]}}</td>
+                    <td>{{share["SUM(shares)"]}}</td>
+                    <td>{{'${:,.2f}'.format(share["price"])}}</td>
+                    <td>{{'${:,.2f}'.format(share["SUM(price)"])}}</td>
+                </tr>
+            {% endfor %}
+            <tr>
+                <td colspan="4" style="text-align: left;" class="mx-4">CASH</td>
+                <td>{{'${:,.2f}'.format(balance)}}</td>
+            </tr>
+        </tbody>
+    </table>
+
+{% endblock %}
