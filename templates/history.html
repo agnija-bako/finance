@@ -1,0 +1,39 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Finance
+{% endblock %}
+
+{% block main %}
+
+    <table class="table table-striped" action="/history">
+        <thead>
+            <tr>
+                <th>Symbol</th>
+                <th>Name</th>
+                <th>Shares</th>
+                <th>Price</th>
+                <th>Date</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for share in shares_purchased %}
+                <tr>
+                    <td>{{share["symbol"]}}</td>
+                    <td>{{share["shares"]}}</td>
+                    <td>{{share["price"] / share["shares"]}}</td>
+                    <td>{{share["date"]}}</td>
+                </tr>
+            {% endfor %}
+            {% for share in shares_sold %}
+                <tr>
+                    <td>{{share["symbol"]}}</td>
+                    <td>-{{share["shares"]}}</td>
+                    <td>{{share["price"] / share["shares"]}}</td>
+                    <td>{{share["date"]}}</td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+
+{% endblock %}
